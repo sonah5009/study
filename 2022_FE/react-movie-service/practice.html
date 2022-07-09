@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>  
+  <script type="text/babel">
+    function Public(){
+      return(
+        <div>
+          <label for="Public"></label>
+          <input type="text"id="public" name="public" placeholder="메모인 것이와요~">
+            </input>
+            <form>
+            <label for="toDo"><input type="radio" name="status" />할 일</label>
+            <label for="process"><input type="radio" name="status" />진행 중</label>
+            <label for="complete"><input type="radio" name="status" />완료</label>
+          </form>
+        </div>
+      )
+    }
+
+    function Private(){
+      return(
+        <div>
+          <label for="Private"></label>
+          <textarea id="private" name="private" placeholder="save버튼 작동 안됨 ㅎㅎ.."></textarea>
+          <form>
+            <label for="toDo"><input type="radio" name="status" />할 일</label>
+            <label for="process"><input type="radio" name="status" />진행 중</label>
+            <label for="complete"><input type="radio" name="status" />완료</label>
+          </form>
+          
+        </div>
+      )
+    }
+    function App(){
+      const [index, setIndex] = React.useState("0");
+      const onSelect = (event) => {
+        setIndex(event.target.value);
+      }
+      return(
+        <div>
+          <h3>You can memo with this web page</h3>
+          <div>
+            <select value={index} onChange={onSelect}>
+              <option id="Private" value="0">Private memo</option>
+              <option id="Public" value="1">Public memo</option>
+            </select>
+            
+            {index==="0" ? <Private /> : null}
+            {index==="1" ? <Public /> : null}
+          </div>
+
+          <button>Save</button> 
+        </div>
+        )
+      };
+      const root = document.getElementById("root");
+
+      ReactDOM.render(<App />, root);
+  </script>
+</html>
